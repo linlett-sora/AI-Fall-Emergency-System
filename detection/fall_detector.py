@@ -299,6 +299,7 @@ class FallDetector:
         ):
             self._samples.popleft()
 
+        
         if sample.posture == "lying" and self._fall_started_at is None:
             previous = self._samples[-1] if self._samples else None
             if (
