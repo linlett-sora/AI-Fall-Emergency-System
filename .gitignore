@@ -2,3 +2,4 @@ database/safety.db
 videos/
 __pycache__/
 *.pyc
+/detection/pose_processor.py
