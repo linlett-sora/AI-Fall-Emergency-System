@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join("database", "safety.db")
+DB_PATH = os.path.join(BASE_DIR, "safety.db")
 
 
 def create_database():
@@ -22,11 +22,23 @@ def create_database():
             fall_history TEXT
         )
     """)
+    
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS emergency_events (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            resident_id TEXT,
+            event_type TEXT NOT NULL,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+            status TEXT DEFAULT 'ACTIVE',
+            FOREIGN KEY (resident_id) REFERENCES residents(resident_id)
+        )
+    """)
+        
 
     conn.commit()
     conn.close()
 
-    print("Database created successfully.")
+    print(f"Database created successfully at: {DB_PATH}")
 
 
 if __name__ == "__main__":

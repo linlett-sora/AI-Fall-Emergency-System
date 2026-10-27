@@ -3,7 +3,11 @@ import mediapipe as mp
 import time
 from pathlib import Path
 
+<<<<<<< HEAD
 from detection.pose_processor_v2 import process_mediapipe_pose
+=======
+
+>>>>>>> main
 class PoseDetector:
 
     def __init__(self):
